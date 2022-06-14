@@ -1,17 +1,35 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo" class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
+  <div>
+    <div>
+      <Apod />
+      
+      </div>
   </div>
 </template>
 
 <script>
+import { computed, onMounted } from 'vue'
+import { AppState } from '../AppState'
+import { apodService } from '../services/ApodService'
+import { logger } from '../utils/Logger'
+import Pop from '../utils/Pop'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup(){
+    onMounted(async () => {
+try {
+  await apodService.getApod()
+} catch (error) {
+  Pop.toast(error.message, 'error')
+  logger.log(error)
+}
+
+    })
+    return{
+      apod: computed(() => AppState.apod)
+    }
+  }
 }
 </script>
 

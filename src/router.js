@@ -11,6 +11,12 @@ const routes = [
     name: 'Home',
     component: loadPage('HomePage')
   },
+
+  {
+    path: '/apod',
+    name: 'Apod',
+    component: loadPage('ApodPage')
+  },
   {
     path: '/about',
     name: 'About',
