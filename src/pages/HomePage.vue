@@ -3,6 +3,7 @@
     <div>
       <Apod />
       
+       
       </div>
   </div>
 </template>
@@ -27,8 +28,11 @@ try {
 
     })
     return{
-      apod: computed(() => AppState.apod)
+      apod: computed(() => AppState.apod),
+
+      
     }
+    
   }
 }
 </script>

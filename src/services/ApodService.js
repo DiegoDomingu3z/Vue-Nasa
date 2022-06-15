@@ -13,6 +13,12 @@ class ApodService {
         logger.log('apod is here ',res.data)
     }
 
+    async pickDate(date){
+        const res = await api.get(`?date=${date}`)
+        logger.log(res.data, 'data pickDate')
+        AppState.apod = res.data
+    }
+
 
 
 }
